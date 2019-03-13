@@ -1,0 +1,55 @@
+@namespace(uri="http://cacm.traceability/1.0", prefix="traceability_")
+package traceability;
+
+import "platform:/resource/org.eclipse.acme.cacm/model/general.ecore";
+
+class TraceabilityModel extends general.DescribableElement {
+	val TraceabilityAsset[*] asset;
+}
+
+abstract class TraceabilityAsset extends general.DescribableElement {
+	
+}
+
+abstract class TraceSemantics extends TraceabilityAsset {
+	attr ChangeEffectKind sourceModeificationEffect;	
+	attr ChangeEffectKind targetModificationEffect;
+	attr ChangeEffectKind sourceRevocationEffect;
+	attr ChangeEffectKind targetRevocationEffect;
+}
+
+class TraceLinkType extends TraceSemantics {
+	attr int maxMultiplicitySource;
+	attr int minMultiplicitySource;
+	attr int maxMultiplicityTarget;
+	attr int minMultiplicityTarget;
+	ref TraceLink[*]#type instance;
+	ref TraceableElementType[1]#endedTraceLinkType targetElementType;
+	
+}
+
+class TraceLink extends TraceSemantics {
+	ref TraceLinkType#instance type;
+	ref TraceableElement[1]#endedTraceLink targetElement;
+	
+}
+
+class TraceableElement extends TraceabilityAsset {
+	ref TraceableElementType#instance type;
+	val TraceLink[*] originatedTraceLink;
+	ref TraceLink[*]#targetElement endedTraceLink;
+}
+
+class TraceableElementType extends TraceabilityAsset {
+	ref TraceableElement[*]#type instance;
+	val TraceLinkType[*] originatedTraceLinkType;
+	ref TraceLinkType[*]#targetElementType endedTraceLinkType;
+}
+
+enum ChangeEffectKind {
+	None = 0;
+	ToValidate = 1;
+	ToModify = 2;
+	Modification = 3;
+	Revocation = 4;
+}

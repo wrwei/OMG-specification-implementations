@@ -1,0 +1,73 @@
+@namespace(uri="http://cacm.vocabulary/1.0", prefix="vocabulary_")
+package vocabulary;
+
+import "platform:/resource/org.eclipse.acme.cacm/model/general.ecore";
+
+
+abstract class VocabularyElement extends general.DescribableElement {
+	
+}
+
+class Concept extends VocabularyElement {
+	ref ConceptType isOf;
+	ref ConceptRelation has;
+}
+
+class ConceptType extends VocabularyElement {
+	ref Vocabulary[1..*] structures;
+}
+
+class ConceptRelation extends VocabularyElement {
+	
+}
+
+class SemanticRelation extends ConceptRelation {
+	ref Vocabulary[1..*] structures;
+}
+
+class Hyponymy extends SemanticRelation {
+	
+}
+
+class Hypernymy extends SemanticRelation {
+	
+}
+
+class Meronymy extends SemanticRelation {
+	
+}
+
+class Holonymy extends SemanticRelation {
+	
+}
+
+class Term extends VocabularyElement {
+	attr Boolean alternativeLabel;
+	attr Boolean preferredLabel;	
+	ref Definition[1..*] unsedIn;
+}
+
+class UndefinedTerm extends Term {
+	
+}
+
+class DefeinedTerm extends Term {
+	ref Lemma usedAs;
+}
+
+class Lemma extends VocabularyElement {
+	
+}
+
+class Definition extends VocabularyElement {
+	
+}
+
+class VocabularyEntry extends VocabularyElement {
+	val Lemma[1] lemma;
+	val Definition[1] definition;	
+}
+
+class Vocabulary extends VocabularyElement {
+	val VocabularyEntry[1..*] contains;
+}

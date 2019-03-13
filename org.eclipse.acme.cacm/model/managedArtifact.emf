@@ -1,0 +1,71 @@
+@namespace(uri="http://cacm.managed.artifact/1.0", prefix="managed_artifact_")
+package managed_artifact;
+
+import "platform:/resource/org.eclipse.acme.cacm/model/general.ecore";
+
+class ManagedArtifactModel extends general.DescribableElement {
+	val ManagedArtifactDefinition[*] managedArtifactDefinition;
+	val ManagedArtifactPackage[*] managedArtifactPackage;
+}
+
+abstract class CitableElement extends general.DescribableElement {
+}
+
+class ManagedArtifactDefinition extends general.DescribableElement {
+	val ManagedArtifact[*] managedArtifact;
+}
+
+class ManagedArtifact extends CitableElement {
+	attr String version;
+	attr EDate date;
+	attr String changes;
+	attr Boolean isLatestVersion;
+	attr Boolean isTemplate;
+	attr Boolean isConfigurable;
+	
+	ref ManagedArtifactPackage[*]#managedArtifact ~package;
+	val ManagedArtifactProperty[*] property;
+	val ManagedArtifactEvent[*] event;
+	val Resource[*] resource;
+	ref ManagedArtifact precedentVersion;
+	ref ManagedArtifact[*] succeedingVersion;
+	val ManagedArtifact managedArtifactPart;
+}
+
+class ManagedArtifactPackage extends CitableElement {
+	val ManagedArtifactPackage[*] subPackage;
+	ref ManagedArtifact[*]#~package managedArtifact;
+}
+
+class ManagedArtifactProperty extends general.DescribableElement {
+	
+}
+
+class ManagedArtifactEvaluation extends ManagedArtifactProperty {
+	attr String rationale;
+	ref ManagedArtifactEvent#evaluation event;
+}
+
+class ManagedArtifactEvent extends general.DescribableElement {
+	attr EDate date;
+	ref ManagedArtifactEvaluation#event evaluation;
+}
+
+class Resource extends general.DescribableElement {
+	attr String location;
+	attr String format;
+}
+
+enum DataTypeKind {
+	Enumeration = 0;
+	STRING = 1;
+	INTEGER = 2;
+	FLOAT = 3;
+}
+
+enum EventKind {
+	Creation = 0;
+	Modification = 1;
+	Evaluation = 2;
+	Revocation = 3;
+}

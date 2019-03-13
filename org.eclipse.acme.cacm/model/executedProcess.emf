@@ -1,0 +1,38 @@
+@namespace(uri="http://cacm.executed.process/1.0", prefix="executed_process_")
+package executed_process;
+
+import "platform:/resource/org.eclipse.acme.cacm/model/general.ecore";
+import "platform:/resource/org.eclipse.acme.cacm/model/managedArtifact.ecore";
+
+
+class ExecutedProcessModel extends general.DescribableElement {
+	val ExecutedProcessAsset[*] asset;
+}
+
+abstract class ExecutedProcessAsset extends general.DescribableElement {
+	
+}
+
+class ExecutedActivity extends ExecutedProcessAsset {
+	attr EDate startTime;
+	attr EDate endTime;
+	ref managed_artifact.ManagedArtifact[*] input;
+	ref managed_artifact.ManagedArtifact[*] output;
+	val ExecutedActivity[*] subActivity;
+	ref ExecutedActivity[*] predecessor;
+	ref ExecutedActivity[*] successor;
+}
+
+class UsedTechnique extends ExecutedProcessAsset {
+	ref managed_artifact.ManagedArtifact[*] managedArtifact;
+}
+
+class Participant extends ExecutedProcessAsset {
+	val ParticipantRole[*] role; 
+}
+
+class ParticipantRole extends ExecutedProcessAsset {
+	ref ExecutedActivity executedActivity;
+	ref managed_artifact.ManagedArtifactEvaluation managedArtifactEvaluation;
+	ref managed_artifact.ManagedArtifact managedArtifact;
+}

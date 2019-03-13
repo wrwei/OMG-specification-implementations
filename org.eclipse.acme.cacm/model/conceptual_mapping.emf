@@ -1,0 +1,40 @@
+@namespace(uri="http://cacm.conceptual.mapping/1.0", prefix="conceptual_mapping_")
+package conceptual_mapping;
+
+import "platform:/resource/org.eclipse.acme.cacm/model/general.ecore";
+
+
+class MapModel extends general.DescribableElement {
+	val MapGroup[*] mapGroup;
+	val Map[*] map;
+}
+
+class MapGroup extends general.DescribableElement {
+	
+}
+
+abstract class Map extends general.NamedElement {
+	attr MapKind type;
+	ref MapGroup mapGroup;
+	val MapJustification mapJustification;
+}
+
+class EquivalenceMap extends Map {
+	ref general.NamedElement[*] source;
+	ref general.NamedElement[*] target;
+}
+
+class ComplianceMap extends Map {
+	ref general.NamedElement[*] source;
+	attr String target;
+}
+
+class MapJustification extends general.DescribableElement {
+	attr String explanation;
+}
+
+enum MapKind {
+	full;
+	partial;
+	noMap;
+}

@@ -1,0 +1,37 @@
+@namespace(uri="http://cacm.general/1.0", prefix="beneral_")
+package general;
+abstract class NamedElement {
+	attr String ~id;
+  	attr String name;
+}
+  
+abstract class DescribableElement {
+  	attr String description;
+}
+
+enum RequirementRelKind {
+	AND = 0;
+	OR = 1;
+	XOR = 2;
+	Requires = 3;
+	ContributesTo = 4;	
+}
+
+enum ApplicabilityKind {
+	AND = 0;
+	OR = 1;
+	XOR = 2;
+}
+
+enum ChangeEffectKind {
+	None = 0;
+	Revoke = 1;
+	Modify = 2;
+	Validate = 3;
+}
+
+enum ActivityRelKind {
+	Decomposition = 0;
+	Precedence = 1;
+}
+

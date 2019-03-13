@@ -1,0 +1,20 @@
+@namespace(uri="http://cacm.assurance.project/1.0", prefix="assurance_project_")
+package assurance_project;
+
+import "platform:/resource/org.eclipse.acme.cacm/model/general.ecore";
+
+
+class AssuranceProject extends general.DescribableElement {
+	attr String createdBy;
+	attr String responsible;
+	attr EDate date;
+	attr String version;
+}
+
+class BaselineConfig extends general.DescribableElement {
+	attr Boolean isActive;
+}
+
+class AssetsPackage extends general.DescribableElement {
+	attr Boolean isActive;
+}

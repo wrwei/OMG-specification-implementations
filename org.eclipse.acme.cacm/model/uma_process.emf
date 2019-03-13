@@ -1,0 +1,35 @@
+@namespace(uri="http://unified.method.architecture/process/1.0", prefix="uma_process_")
+package uma_process;
+
+import "platform:/resource/org.eclipse.acme.cacm/model/uma_method.ecore";
+
+abstract class ProcessElement extends uma_method.DescribableElement {
+	
+}
+
+abstract class BreakdownElement extends ProcessElement {
+	attr String prefix;
+	attr Boolean isPlanned=true;
+	attr Boolean hasMultipleOccurrences = false;
+	attr Boolean isOptional = false;
+	ref BreakdownElement presentedBefore;
+	ref BreakdownElement presentedAfter;
+}
+
+class WorkOrder extends BreakdownElement {
+	attr WorkOrderType linkType="finishToStart";
+}
+
+abstract class WorkBreakdownElement extends BreakdownElement {
+	attr Boolean isRepeatable = false;
+	attr Boolean isOngoing = false;
+	attr Boolean isEventDriven = false;
+}
+
+
+enum WorkOrderType {
+  finishToStart = 0;
+  finishToFinish = 1;
+  startToStart = 2;
+  startToFinish = 3;
+}

@@ -1,0 +1,21 @@
+@namespace(uri="http://cacm.property/1.0", prefix="property_")
+package property;
+
+import "platform:/resource/org.eclipse.acme.cacm/model/general.ecore";
+
+class PropertyModel extends general.DescribableElement {
+	val Property[*] hasProperty;
+}
+
+class Property extends general.NamedElement {
+	attr DataTypeKind dataType;
+	attr String enumValues;
+	attr String unit;
+}
+
+enum DataTypeKind {
+	Enumeration = 0;
+	STRING = 1;
+	INTEGER = 2;
+	FLOAT = 3;
+}

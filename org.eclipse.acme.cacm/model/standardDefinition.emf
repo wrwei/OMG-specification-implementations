@@ -1,0 +1,91 @@
+@namespace(uri="http://cacm.standard.definition/1.0", prefix="standard_definition_")
+package standard_definition;
+
+import "platform:/resource/org.eclipse.acme.cacm/model/general.ecore";
+import "platform:/resource/omg.spem/model/spem.ecore";
+
+
+abstract class RefElement extends general.DescribableElement {
+	
+}
+
+class RefStandard extends RefElement {
+	attr String scope;
+	attr String rev;
+	attr String purpose;
+	attr String publisher;
+	attr EDate issued;
+}
+
+class RefRequirement extends RefElement, spem.Guidance {
+	attr String reference;
+	attr String assumptions;
+	attr String rationale;
+	attr String image;
+	attr String annotations;
+	val RefRequirement[*] subRequirements;
+	val RefRequirementRel[*] ownedRel;
+}
+
+class RefRequirementRel extends RefElement {
+	ref RefRequirement[1] source;
+	ref RefRequirement[1] target;
+}
+
+class RefCriticalityLevel extends RefElement {
+	
+}
+
+class RefApplicabilityLevel extends RefElement {
+	
+}
+
+class RefIndependencyLevel extends RefApplicabilityLevel {
+	
+}
+
+class RefRecommendationLevel extends RefApplicabilityLevel {
+	
+}
+
+class RefControlCategory extends RefApplicabilityLevel {
+	
+}
+
+class RefCriticalityApplicability extends RefElement {
+	attr String comment;
+	ref RefApplicabilityLevel[1] applicLevel;
+	ref RefCriticalityLevel[1] critcLevel;
+}
+
+class RefApplicability extends RefElement {
+	attr String comments;
+	ref spem.MethodContentElement applicTasrget;
+	ref RefCriticalityApplicability[*] applicCritic;
+}
+
+class RefApplicabilityTable extends RefElement {
+	val RefApplicability[*] ownedApplicability;
+	ref spem.MethodContentElement[*] tableContent;
+}
+
+class RefApplicabilityRel extends RefElement {
+	attr ApplicabilityKind type;
+	ref RefApplicability[1] source;
+	ref RefApplicability[1] target;
+}
+
+
+enum RequirementRelKind {
+	AND = 0;
+	OR;
+	XOR;
+	Requires;
+	ContributesTo;
+}
+
+enum ApplicabilityKind {
+	AND = 0;
+	OR;
+	XOR;
+}

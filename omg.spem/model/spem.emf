@@ -1,0 +1,531 @@
+@"add-ons"(uma="WorkProductUseRelationship")
+@namespace(uri="http://www.thalesgroup.com/spem/2.0", prefix="spem")
+package spem;
+
+abstract class ExtensibleElement {
+  ref Kind kind;
+}
+
+class Kind extends ExtensibleElement {
+}
+
+abstract class WorkDefinitionPerformer {
+  transient derived ref WorkDefinition linkedWorkDefinition;
+}
+
+abstract class WorkDefinition {
+  attr String[*] preCondition;
+  attr String[*] postCondition;
+
+  @TODO(implem="isDerived")
+  transient derived !resolve ref WorkDefinitionParameter[*] ownedParameter;
+}
+
+class WorkDefinitionParameter {
+  attr ParameterDirectionKind direction;
+}
+
+enum ParameterDirectionKind {
+  in = 0;
+  out = 1;
+  inout = 2;
+}
+
+abstract class BreakdownElement extends ProcessElement {
+  !ordered attr boolean[1] hasMultipleOccurrences = false;
+  !ordered attr boolean[1] isOptional = false;
+  !ordered attr boolean[1] isPlanned = false;
+  val PlanningData planningData;
+}
+
+abstract class WorkBreakdownElement extends BreakdownElement {
+  !ordered attr boolean[1] isRepeatable = false;
+  !ordered attr boolean[1] isOngoing = false;
+  !ordered attr boolean[1] isEventDriven = false;
+  ref WorkSequence[*]#successor linkToPredecessor;
+  ref WorkSequence[*]#predecessor linkToSuccessor;
+}
+
+class WorkSequence extends BreakdownElement {
+  !ordered attr WorkSequenceKind linkKind = "finishToStart";
+  ref WorkBreakdownElement[1]#linkToSuccessor predecessor;
+  ref WorkBreakdownElement[1]#linkToPredecessor successor;
+}
+
+enum WorkSequenceKind {
+  finishToStart = 0;
+  finishToFinish = 1;
+  startToStart = 2;
+  startToFinish = 3;
+}
+
+@"add-ons"(uma="isEnactable")
+class Activity extends WorkDefinition, WorkBreakdownElement, VariabilityElement {
+  !ordered attr ActivityUseKind[1] useKind = "na";
+  ref Activity usedActivity;
+  !resolve val BreakdownElement[*] nestedBreakdownElement;
+  ref BreakdownElement[*] suppressedBreakdownElement;
+  !resolve val ProcessParameter[*] ownedProcessParameter;
+  ref MethodConfiguration defaultContext;
+  ref MethodConfiguration[*] validContext;
+  attr boolean isEnactable;
+}
+
+enum ActivityUseKind {
+  na = 0;
+  extension = 1;
+  localContribution = 2;
+  localReplacement = 3;
+}
+
+class ProcessPerformer extends WorkDefinitionPerformer, BreakdownElement {
+  ref RoleUse[+] linkedRoleUse;
+  ref Activity linkedActivity;
+  ref TaskUse linkedTaskUse;
+}
+
+class RoleUse extends MethodContentUse {
+  ref RoleDefinition role;
+  ref Qualification[*] appliedQualification;
+}
+
+class ProcessResponsibilityAssignment extends BreakdownElement {
+  ref RoleUse[+] linkedRoleUse;
+  ref WorkProductUse[1] linkedWorkProductUse;
+}
+
+class WorkProductUse extends MethodContentUse {
+  ref WorkProductDefinition workProduct;
+}
+
+@"add-ons"(uma="relationshipkind")
+class WorkProductUseRelationship extends BreakdownElement {
+  ref WorkProductUse[1] source;
+  ref WorkProductUse[+] target;
+  attr WorkProductRelationshipKind[1] relationshipKind = "impactedBy";
+}
+
+@"add-ons"("Thales R&T"="optionality (bug in the spec)")
+class ProcessParameter extends WorkDefinitionParameter, BreakdownElement {
+  ref WorkProductUse parameterType;
+  attr OptionalityKind optionality;
+}
+
+class Milestone extends WorkBreakdownElement {
+  ref WorkProductUse[*] requiredResult;
+}
+
+abstract class ProcessElement extends DescribableElement, ProcessPackageableElement {
+  transient derived ref ProcessKind processKind;
+}
+
+@"add-ons"(uma="category, copyright, author, changeDate, changeDescription, version")
+abstract class DescribableElement extends ExtensibleElement {
+  !ordered attr String presentationName;
+  !ordered attr String briefDescription;
+  !ordered attr String mainDescription;
+  !ordered attr String purpose;
+  ref Guidance[*] guidance;
+  ref Metric[*] metric;
+  ref Category[*]#categorizedElement category;
+  attr String copyright;
+  attr String[*] author;
+  attr EDate changeDate;
+  attr String changeDescription;
+  attr String version;
+}
+
+class Category extends MethodContentElement {
+  ref Category[*] subCategory;
+  ref DescribableElement[*]#category categorizedElement;
+}
+
+class Guidance extends MethodContentElement {
+}
+
+class Metric extends DescribableElement {
+  attr String expression;
+}
+
+abstract class MethodContentElement extends DescribableElement, MethodContentPackageableElement, VariabilityElement {
+  ref MethodContentKind methodContentKind;
+}
+
+class ToolDefinition extends MethodContentElement {
+  ref WorkProductDefinition[*] managedWorkProduct;
+}
+
+class TaskDefinition extends WorkDefinition, MethodContentElement {
+  !resolve val Default_TaskDefinitionParameter[*] ownedTaskDefinitionParameter;
+  ref ToolDefinition[*] usedTool;
+  !resolve val Step[*] step;
+  ref Qualification[*] requiredQualification;
+}
+
+@"add-ons"("Thales R&T"="predecessor, successor in order to replace Section metaclass")
+class Step extends WorkDefinition, DescribableElement, VariabilityElement {
+  attr String name;
+  ref Step#successor predecessor;
+  ref Step#predecessor successor;
+}
+
+class WorkProductDefinition extends MethodContentElement {
+}
+
+class RoleDefinition extends MethodContentElement {
+  attr String[*] synonym;
+  ref Qualification[*] providedQualification;
+}
+
+class WorkProductDefinitionRelationship extends MethodContentElement {
+  ref WorkProductDefinition[1] source;
+  ref WorkProductDefinition[+] target;
+}
+
+class Default_TaskDefinitionPerformer extends MethodContentElement {
+  ref TaskDefinition[1] linkedTaskDefinition;
+  ref RoleDefinition[+] linkedRoleDefinition;
+}
+
+class Default_ResponsibilityAssignment extends MethodContentElement {
+  ref RoleDefinition[+] linkedRoleDefinition;
+  ref WorkProductDefinition[1] linkedWorkProductDefinition;
+}
+
+class Default_TaskDefinitionParameter extends WorkDefinitionParameter {
+  attr String name;
+  ref WorkProductDefinition parameterType;
+  attr OptionalityKind optionality;
+}
+
+class Qualification extends MethodContentElement {
+}
+
+enum OptionalityKind {
+  mandatory = 0;
+  optional = 1;
+}
+
+abstract class MethodContentPackageableElement {
+  attr String name;
+}
+
+abstract class ProcessPackageableElement {
+  attr String name;
+}
+
+class MethodContentPackage extends MethodContentPackageableElement, MethodPluginPackageableElement {
+  !resolve val MethodContentPackageableElement[*] ownedMethodContentMember;
+  ref MethodContentPackage[*] reusedPackage;
+}
+
+class ProcessPackage extends ProcessPackageableElement, MethodPluginPackageableElement {
+  !resolve val ProcessPackageableElement[*] ownedProcessMember;
+}
+
+abstract class MethodContentKind extends MethodContentElement, Kind {
+}
+
+abstract class ProcessKind extends ProcessElement, Kind {
+}
+
+class PlanningData extends ProcessElement {
+  attr EDate startDate;
+  attr EDate finishDate;
+  attr int rank;
+  attr String duration;
+}
+
+abstract class MethodContentUse extends BreakdownElement {
+  attr boolean isSynchronizedWithSource;
+}
+
+class TaskUse extends MethodContentUse, WorkBreakdownElement {
+  ref TaskDefinition task;
+  ref Qualification[*] usedQualification;
+  ref Step[*] selectedStep;
+  val ProcessParameter[*] ownedProcessParameter;
+  attr String preCondition;
+  attr String postCondition;
+}
+
+class CompositeRole extends RoleUse {
+  ref RoleDefinition[*] aggregatedRole;
+}
+
+class TeamProfile extends BreakdownElement {
+  !resolve val TeamProfile[*]#superTeam subTeam;
+  ref TeamProfile#subTeam superTeam;
+  ref RoleUse[*] teamRole;
+}
+
+abstract class VariabilityElement {
+  attr VariabilityType variabilityType;
+  ref VariabilityElement variabilityBasedOnElement;
+}
+
+class ProcessComponent extends ProcessPackage {
+  !resolve val Activity process;
+  !resolve val WorkProductPort[*] ownedPort;
+}
+
+class ProcessComponentUse extends MethodContentUse {
+  ref ProcessComponent[1] processComponent;
+  val WorkProductPort[*] usedPort;
+}
+
+abstract class MethodLibraryPackageableElement {
+  attr String name;
+}
+
+abstract class MethodPluginPackageableElement {
+}
+
+class MethodConfiguration extends MethodLibraryPackageableElement {
+  ref MethodConfiguration[*] baseConfiguration;
+  derived ref MethodPlugin[+] methodPluginSelection;
+  ref ProcessPackage[*] processPackageSelection;
+  ref MethodContentPackage[*] contentPackageSelection;
+  ref Category[*] substractedCategory;
+  ref Category[1] defaultView;
+  ref Category[*] processView;
+}
+
+class MethodPlugin extends MethodLibraryPackageableElement {
+  val MethodContentPackage[*] ownedMethodContentPackage;
+  val ProcessPackage[*] ownedProcessPackage;
+  ref MethodPlugin[*] basePlugin;
+}
+
+@"add-ons"(uma="configurationPackage")
+class MethodLibrary {
+  attr String name;
+  !resolve val MethodPlugin[*] ownedMethodPlugin;
+  !resolve val MethodConfiguration[*] predefinedConfiguration;
+  !resolve val MethodContentPackage configurationPackage;
+}
+
+class WorkProductPort extends ProcessElement {
+  !ordered attr boolean[1] isOptional = false;
+  !ordered attr ParameterDirectionKind portKind;
+  ref WorkProductDefinition portType;
+}
+
+class WorkProductPortConnector extends ProcessElement {
+  ref WorkProductPort[*] connectedPort;
+}
+
+enum VariabilityType {
+  na = 0;
+  contributes = 1;
+  ~extends = 2;
+  replaces = 3;
+  extends_replaces = 4;
+}
+
+enum WorkProductRelationshipKind {
+  impactedBy = 0;
+  composition = 1;
+  aggregation = 2;
+}
+
+@namespace(uri="http://www.thalesgroup.com/spem/2.0/uma", prefix="uma")
+package uma {
+  class Artifact extends WorkProductUse {
+    val Artifact[*] containedArtifact;
+  }
+
+  class CapabilityPattern extends Process {
+  }
+
+  class Checklist extends Guidance {
+  }
+
+  class Concept extends Guidance {
+  }
+
+  class CategoryPackage extends MethodContentPackage {
+  }
+
+  class CustomCategory extends Category {
+  }
+
+  class Deliverable extends WorkProductUse {
+    ref WorkProductUse[*] deliveredProduct;
+    attr String externalDescription;
+    attr String packagingGuidance;
+  }
+
+  class Process extends Activity {
+    val CapabilityPattern[*] includedPattern;
+    attr String scope;
+    attr String[*] usageNote;
+    val WorkProductPortConnector[*] includedConnector;
+  }
+
+  @doc(scale="represents the size in man.year or other equivalent units")
+  class DeliveryProcess extends Process {
+    attr String scale;
+    attr String projectCharacteristics;
+    attr RiskLevel riskLevel;
+    attr EstimatingTechnique estimatingTechnique;
+    attr ExpertiseLevel projectMemberExpertise;
+    attr ContractKind typeOfContract;
+    ref SupportingMaterial[*] communicationMaterial;
+    ref SupportingMaterial[*] educationalMaterial;
+  }
+
+  enum RiskLevel {
+    LOW = 0;
+    MID = 1;
+    HIGH = 2;
+  }
+
+  enum EstimatingTechnique {
+    COST = 0;
+    TIME = 1;
+    SKILLS = 2;
+    DEFECTS = 3;
+    OTHER = 4;
+  }
+
+  enum ExpertiseLevel {
+    LOW = 0;
+    MID = 1;
+    LEVEL = 2;
+  }
+
+  enum ContractKind {
+    EXPRESS = 1;
+    IMPLIED = 2;
+    OTHER = 2;
+  }
+
+  class Discipline extends Category {
+    ref TaskDefinition[*] relatedTask;
+    ref Process[*] relatedWorflow;
+  }
+
+  class DisciplineGrouping extends Category {
+  }
+
+  class Root {
+    val MethodConfiguration[0..?] methodConfiguration;
+    val MethodLibrary[0..?] methodLibrary;
+    val MethodPlugin[0..?] MethodPlugin;
+  }
+
+  class Domain extends Category {
+    ref WorkProductDefinition[*] relatedProduct;
+  }
+
+  class EstimatingConsideration extends Guidance {
+  }
+
+  class Example extends Guidance {
+  }
+
+  class Iteration extends Activity {
+  }
+
+  class Outcome extends WorkProductUse {
+  }
+
+  class Phase extends Activity {
+  }
+
+  class Practice extends Guidance {
+    val Practice[*] subPractice;
+    ref Activity[*] referencedActivity;
+    ref MethodContentElement[*] contentReference;
+    attr String additionalInfo;
+    attr String application;
+    attr String background;
+    attr String[*] goal;
+    attr String[*] levelOfAdoption;
+    attr String problem;
+  }
+
+  class ProcessPlanningTemplate extends Process {
+    ref Process[*] baseProcess;
+  }
+
+  class Report extends Guidance {
+  }
+
+  class ReusableAsset extends Guidance {
+  }
+
+  class Roadmap extends Guidance {
+  }
+
+  class Template extends Guidance {
+  }
+
+  class TermDefinition extends Guidance {
+  }
+
+  class ToolMentor extends Guidance {
+  }
+
+  class Whitepaper extends Concept {
+  }
+
+  class Guideline extends Guidance {
+  }
+
+  class SupportingMaterial extends Guidance {
+  }
+
+  class RoleDefinitionPackage extends MethodContentPackage {
+  }
+
+  class TaskDefinitionPackage extends MethodContentPackage {
+  }
+
+  class WorkProductDefinitionPackage extends MethodContentPackage {
+  }
+
+  class GuidancePackage extends MethodContentPackage {
+  }
+
+  class DisciplinePackage extends MethodContentPackage {
+  }
+
+  class DomainPackage extends MethodContentPackage {
+  }
+
+  class WorkProductKindPackage extends MethodContentPackage {
+  }
+
+  class RoleSetPackage extends MethodContentPackage {
+  }
+
+  class ToolDefinitionPackage extends MethodContentPackage {
+  }
+
+  class ConfigurationPackage extends MethodContentPackage {
+    val MethodConfiguration[*] ownedConfiguration;
+  }
+
+  class CapabilityPatternPackage extends ProcessPackage {
+  }
+
+  class DeliveryProcessPackage extends ProcessPackage {
+  }
+
+  class RoleSet extends MethodContentElement {
+    ref RoleDefinition[*] role;
+  }
+
+  class QualificationPackage extends MethodContentPackage {
+  }
+
+  class ProcessComponentPackage extends ProcessPackage {
+  }
+
+  class WorkProductKind extends Kind, MethodContentElement {
+  }
+
+}
+

@@ -1,0 +1,154 @@
+@namespace(uri="http://unified.method.architecture/method/1.0", prefix="uma_method_")
+package uma_method;
+
+abstract class Element {
+	
+} 
+
+abstract class NamedElement extends Element {
+	attr String name;
+}
+
+abstract class PackageableElement extends NamedElement {
+	
+}
+
+abstract class MethodElement extends PackageableElement {
+	attr String guid;
+	attr String presentationName;
+	attr String briefDescription;
+	attr Boolean suppressed=false;
+	attr String orderingGuide;
+}
+
+abstract class MethodPackage extends MethodElement {
+	attr Boolean global=false;
+	val MethodPackage[*] childPackages;
+	ref MethodPackage[*] reusedPackages;
+}
+
+abstract class MethodUnit extends MethodElement {
+	attr String authors;
+	attr EDate changeDate;
+	attr String changeDescription;
+	attr String version;
+}
+
+abstract class DescribableElement extends MethodElement {
+	attr String shapeIcon;
+	attr String nodeIcon;
+	val ContentDescription presentation;
+}
+
+abstract class VaraibilityElement extends MethodElement {
+	attr VariabilityType variabilityType="na";
+	ref VaraibilityElement variabilityBasedOnElement;
+}
+
+class ContentDescription extends MethodUnit {
+	attr String mainDescription;
+	attr String externalId;
+	attr String keyConsiderations;
+	attr String[1] longPresentationName; 
+}
+
+abstract class ContentElement extends DescribableElement {
+	attr VariabilityType variabilityType="na";
+	ref VaraibilityElement variabilityBasedOnElement;
+}
+
+class ContentPackage extends MethodPackage {
+	val ContentElement[*] contentElements;
+	ref Guideline[*] guidelines;
+	ref Checklist[*] checklists;
+	ref TermDefinition[*] termdefinition;
+}
+
+class WorkProduct extends ContentElement {
+	ref ToolMentor[*] toolMentors;
+}
+
+class Artifact extends WorkProduct {
+	val Artifact[*] containedArtifact;
+}
+
+class Outcome extends WorkProduct {
+	
+}
+
+class Deliverable extends WorkProduct {
+	ref WorkProduct[*] deliveredWorkProducts;
+}
+
+class Task extends ContentElement {
+	ref WorkProduct[*] output;
+	ref WorkProduct[*] mandantoryInput;
+	ref WorkProduct[*] optionalInput;
+	ref Role[*] performedBy;
+	ref Role[*] additionallyPerformedBy;
+	ref ToolMentor[*] toolMentors;
+}
+
+class Role extends ContentElement {
+	ref WorkProduct[*] modifies;
+}
+
+abstract class Guidance extends ContentElement {
+	
+}
+
+class Guideline extends Guidance {
+	
+}
+
+class Checklist extends Guidance {
+	
+}
+
+class ToolMentor extends Guidance {
+	
+}
+
+class Practice extends Guidance {
+	val Practice[*] subPractices;
+	ref ContentElement[*] contentReferences;
+}
+
+class TermDefinition extends Guidance {
+	
+}
+
+abstract class ContentCategory extends ContentElement {
+	
+}
+
+class WorkProductType extends ContentCategory {
+	ref WorkProduct[*] workProducts;
+}
+
+class Domain extends ContentCategory {
+	ref WorkProduct[*] workProducts;
+	val Domain[*] subDomains;
+}
+
+class Tool extends ContentCategory {
+	ref ToolMentor[*] toolMentors;
+}
+
+class DisciplineGrouping extends ContentCategory {
+	
+}
+
+class RoleSetGrouping extends ContentCategory {
+	
+}
+
+enum VariabilityType {
+	na;
+	contributes;
+	~extends;
+	replaces;
+	localContribution;
+	localReplacement;
+	extendsReplaecs;
+}
