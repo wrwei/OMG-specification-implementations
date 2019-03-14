@@ -1,0 +1,133 @@
+@namespace(uri="http://org.eclipse.acme.action/1.0/argumentation", prefix="action_argumentation_")
+package action_argumentation;
+
+import "platform:/resource/org.eclipse.acme.action.language/model/action_base.ecore";
+import "platform:/resource/org.eclipse.acme.sacm/model/base.ecore";
+import "platform:/resource/org.eclipse.acme.sacm/model/argumentation.ecore";
+
+class ArgumentationActionPackage extends action_base.ActionElement {
+	val action_base.Action[*] actions;
+	val ArgumentationActionPackage[*] argumentationActionPackages;
+}
+
+
+class CreateArgumentPackage extends action_base.CreateArtifactElement{
+	
+}
+
+class CreateArgumentPackageInterface extends action_base.CreateArtifactElement{
+	
+}
+
+class CreateArgumentPackageBinding extends action_base.CreateArtifactElement{
+	
+}
+
+class CreateArgumentPackageGroup extends action_base.CreateArtifactElement{
+	
+}
+
+class UpdateArgumentationElement extends action_base.Update {
+	ref argumentation.ArgumentationElement argumentationElement;
+}
+
+class DeleteArgumentationElement extends action_base.Delete {
+	attr int index;
+	ref argumentation.ArgumentationElement argumentationElement;	
+}
+
+abstract class CreateArgumentAsset extends action_base.Create {
+	
+}
+
+class CreateArtifactReference extends CreateArgumentAsset {
+	
+}
+
+class ReferToArtifact extends action_base.Update {
+	ref base.ModelElement referredArtifact;
+}
+
+abstract class CreateAssertion extends CreateArgumentAsset {
+	
+}
+
+abstract class UpdateAssertionDeclaration extends action_base.Update {
+	
+}
+
+class DeclareAsserted extends UpdateAssertionDeclaration {
+	
+}
+
+class DeclareNeedsSupport extends UpdateAssertionDeclaration {
+	
+}
+
+class DeclareAssumed extends UpdateAssertionDeclaration {
+	
+}
+
+class DeclareAxiomatic extends UpdateAssertionDeclaration {
+	
+}
+
+class DeclareDefeated extends UpdateAssertionDeclaration {
+	
+}
+
+class DeclareAsCited extends UpdateAssertionDeclaration {
+	
+}
+
+class MakeClaim extends CreateAssertion {
+	
+}
+
+class CreateArgumentReasoning extends CreateArgumentAsset {
+	
+}
+
+abstract class CreateAssertedRelationship extends CreateAssertion {
+	
+}
+
+class CreateAssertedContext extends CreateAssertedRelationship {
+	
+}
+
+class CreateAssertedEvidence extends CreateAssertedRelationship {
+	
+}
+
+class CreateAssertedInference extends CreateAssertedRelationship {
+	
+}
+
+class CreateAssertedArtifactContext extends CreateAssertedRelationship {
+	
+}
+
+class CreateAssertedArtifactSupport extends CreateAssertedRelationship {
+	
+}
+
+class UpdateReasoning extends action_base.Update {
+	ref argumentation.ArgumentReasoning reasoning;
+}
+
+class UpdateMetaClaim extends action_base.Update {
+	ref argumentation.Claim metaClaim;
+}
+
+class UpdateAssertedRelationshipSource extends action_base.Update {
+	ref base.ModelElement source;
+}
+
+class UpdateAssertedRelationshipTarget extends action_base.Update {
+	ref base.ModelElement[*] target;
+}
+
+class UpdateIsCounterAssertedRelationship extends action_base.Update {
+	attr boolean isCounter;
+}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated action_base -->
+      <package
+            uri="http://org.eclipse.acme.action/1.0/base"
+            class="action_base.Action_basePackage"
+            genModel="model/action_base.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated action_argumentation -->
+      <package
+            uri="http://org.eclipse.acme.action/1.0/argumentation"
+            class="action_argumentation.Action_argumentationPackage"
+            genModel="model/action_argumentation.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated action_artifact -->
+      <package
+            uri="http://org.eclipse.acme.action/1.0/artifact"
+            class="action_artifact.Action_artifactPackage"
+            genModel="model/action_artifact.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated action_terminology -->
+      <package
+            uri="http://org.eclipse.acme.action/1.0/terminology"
+            class="action_terminology.Action_terminologyPackage"
+            genModel="model/action_terminology.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated action_assurancecase -->
+      <package
+            uri="http://org.eclipse.acme.action/1.0/assurancecase"
+            class="action_assurancecase.Action_assurancecasePackage"
+            genModel="model/action_assurancecase.genmodel"/>
+   </extension>
+
+</plugin>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.acme.action.language/src" modelPluginID="org.eclipse.acme.action.language"
+    modelName="Action_argumentation" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="action_base.genmodel#//action_base ../../org.eclipse.acme.sacm/model/argumentation.genmodel#//argumentation ../../org.eclipse.acme.sacm/model/base.genmodel#//base"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>action_argumentation.ecore</foreignModel>
+  <genPackages prefix="Action_argumentation" disposableProviderFactory="true" ecorePackage="action_argumentation.ecore#/">
+    <genClasses ecoreClass="action_argumentation.ecore#//ArgumentationActionPackage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference action_argumentation.ecore#//ArgumentationActionPackage/actions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference action_argumentation.ecore#//ArgumentationActionPackage/argumentationActionPackages"/>
+    </genClasses>
+    <genClasses ecoreClass="action_argumentation.ecore#//CreateArgumentPackage"/>
+    <genClasses ecoreClass="action_argumentation.ecore#//CreateArgumentPackageInterface"/>
+    <genClasses ecoreClass="action_argumentation.ecore#//CreateArgumentPackageBinding"/>
+    <genClasses ecoreClass="action_argumentation.ecore#//CreateArgumentPackageGroup"/>
+    <genClasses ecoreClass="action_argumentation.ecore#//UpdateArgumentationElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference action_argumentation.ecore#//UpdateArgumentationElement/argumentationElement"/>
+    </genClasses>
+    <genClasses ecoreClass="action_argumentation.ecore#//DeleteArgumentationElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_argumentation.ecore#//DeleteArgumentationElement/index"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference action_argumentation.ecore#//DeleteArgumentationElement/argumentationElement"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="action_argumentation.ecore#//CreateArgumentAsset"/>
+    <genClasses ecoreClass="action_argumentation.ecore#//CreateArtifactReference"/>
+    <genClasses ecoreClass="action_argumentation.ecore#//ReferToArtifact">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference action_argumentation.ecore#//ReferToArtifact/referredArtifact"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="action_argumentation.ecore#//CreateAssertion"/>
+    <genClasses image="false" ecoreClass="action_argumentation.ecore#//UpdateAssertionDeclaration"/>
+    <genClasses ecoreClass="action_argumentation.ecore#//DeclareAsserted"/>
+    <genClasses ecoreClass="action_argumentation.ecore#//DeclareNeedsSupport"/>
+    <genClasses ecoreClass="action_argumentation.ecore#//DeclareAssumed"/>
+    <genClasses ecoreClass="action_argumentation.ecore#//DeclareAxiomatic"/>
+    <genClasses ecoreClass="action_argumentation.ecore#//DeclareDefeated"/>
+    <genClasses ecoreClass="action_argumentation.ecore#//DeclareAsCited"/>
+    <genClasses ecoreClass="action_argumentation.ecore#//MakeClaim"/>
+    <genClasses ecoreClass="action_argumentation.ecore#//CreateArgumentReasoning"/>
+    <genClasses image="false" ecoreClass="action_argumentation.ecore#//CreateAssertedRelationship"/>
+    <genClasses ecoreClass="action_argumentation.ecore#//CreateAssertedContext"/>
+    <genClasses ecoreClass="action_argumentation.ecore#//CreateAssertedEvidence"/>
+    <genClasses ecoreClass="action_argumentation.ecore#//CreateAssertedInference"/>
+    <genClasses ecoreClass="action_argumentation.ecore#//CreateAssertedArtifactContext"/>
+    <genClasses ecoreClass="action_argumentation.ecore#//CreateAssertedArtifactSupport"/>
+    <genClasses ecoreClass="action_argumentation.ecore#//UpdateReasoning">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference action_argumentation.ecore#//UpdateReasoning/reasoning"/>
+    </genClasses>
+    <genClasses ecoreClass="action_argumentation.ecore#//UpdateMetaClaim">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference action_argumentation.ecore#//UpdateMetaClaim/metaClaim"/>
+    </genClasses>
+    <genClasses ecoreClass="action_argumentation.ecore#//UpdateAssertedRelationshipSource">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference action_argumentation.ecore#//UpdateAssertedRelationshipSource/source"/>
+    </genClasses>
+    <genClasses ecoreClass="action_argumentation.ecore#//UpdateAssertedRelationshipTarget">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference action_argumentation.ecore#//UpdateAssertedRelationshipTarget/target"/>
+    </genClasses>
+    <genClasses ecoreClass="action_argumentation.ecore#//UpdateIsCounterAssertedRelationship">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_argumentation.ecore#//UpdateIsCounterAssertedRelationship/isCounter"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

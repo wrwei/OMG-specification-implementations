@@ -1,0 +1,77 @@
+@namespace(uri="http://org.eclipse.acme.action/1.0/terminology", prefix="action_terminology_")
+package action_terminology;
+
+import "platform:/resource/org.eclipse.acme.action.language/model/action_base.ecore";
+import "platform:/resource/org.eclipse.acme.sacm/model/base.ecore";
+import "platform:/resource/org.eclipse.acme.sacm/model/terminology.ecore";
+
+class TerminologyActionPackage extends action_base.ActionElement {
+	val action_base.Action[*] actions;
+	val TerminologyActionPackage[*] terminologyActionPackages;
+}
+
+class CreateTerminologyPackage extends action_base.CreateArtifactElement{
+	
+}
+
+class CreateTerminologyPackageInterface extends action_base.CreateArtifactElement{
+	
+}
+
+class CreateTerminologyPackageBinding extends action_base.CreateArtifactElement{
+	
+}
+
+class CreateTerminologyPackageGroup extends action_base.CreateArtifactElement{
+	
+}
+
+class UpdateArtifactElement extends action_base.Update {
+	ref base.ArtifactElement argumentationElement;
+}
+
+class DeleteArtifactElement extends action_base.Delete {
+	attr int index;
+	ref base.ArtifactElement argumentationElement;	
+}
+
+abstract class CreateTerminologyAsset extends action_base.Create {
+	
+}
+
+class CreateCategory extends CreateTerminologyAsset {
+	
+}
+
+abstract class CreateExpressionElement extends action_base.Create {
+	attr String value;
+}
+
+class CreateExpression extends CreateTerminologyAsset {
+	
+}
+
+class CreateTerm extends CreateTerminologyAsset {
+	
+}
+
+class UpdateExpressionElementCategory extends action_base.Update {
+	ref terminology.Category category;
+}
+
+class UpdateExpressionElementValue extends action_base.Update {
+	attr String value;
+}
+
+class UpdateExpressionElementExpression extends action_base.Update {
+	ref terminology.ExpressionElement element;
+}
+
+class UpdateTermExternalReference extends action_base.Update {
+	attr String externalReference;
+}
+
+class UpdateTermOrigin extends action_base.Update {
+	ref base.ModelElement origin;
+}
+

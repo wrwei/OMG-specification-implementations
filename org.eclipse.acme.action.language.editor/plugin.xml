@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated action_base -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="action_base.presentation.Action_baseModelWizardID"
+            name="%_UI_Action_baseModelWizard_label"
+            class="action_base.presentation.Action_baseModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/Action_baseModelFile.gif">
+         <description>%_UI_Action_baseModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated action_base -->
+      <editor
+            id="action_base.presentation.Action_baseEditorID"
+            name="%_UI_Action_baseEditor_label"
+            icon="icons/full/obj16/Action_baseModelFile.gif"
+            extensions="action_base"
+            class="action_base.presentation.Action_baseEditor"
+            contributorClass="action_base.presentation.Action_baseActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated action_argumentation -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="action_argumentation.presentation.Action_argumentationModelWizardID"
+            name="%_UI_Action_argumentationModelWizard_label"
+            class="action_argumentation.presentation.Action_argumentationModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/Action_argumentationModelFile.gif">
+         <description>%_UI_Action_argumentationModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated action_argumentation -->
+      <editor
+            id="action_argumentation.presentation.Action_argumentationEditorID"
+            name="%_UI_Action_argumentationEditor_label"
+            icon="icons/full/obj16/Action_argumentationModelFile.gif"
+            extensions="action_argumentation"
+            class="action_argumentation.presentation.Action_argumentationEditor"
+            contributorClass="action_argumentation.presentation.Action_argumentationActionBarContributor">
+      </editor>
+   </extension>
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated action_artifact -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="action_artifact.presentation.Action_artifactModelWizardID"
+            name="%_UI_Action_artifactModelWizard_label"
+            class="action_artifact.presentation.Action_artifactModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/Action_artifactModelFile.gif">
+         <description>%_UI_Action_artifactModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated action_artifact -->
+      <editor
+            id="action_artifact.presentation.Action_artifactEditorID"
+            name="%_UI_Action_artifactEditor_label"
+            icon="icons/full/obj16/Action_artifactModelFile.gif"
+            extensions="action_artifact"
+            class="action_artifact.presentation.Action_artifactEditor"
+            contributorClass="action_artifact.presentation.Action_artifactActionBarContributor">
+      </editor>
+   </extension>
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated action_terminology -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="action_terminology.presentation.Action_terminologyModelWizardID"
+            name="%_UI_Action_terminologyModelWizard_label"
+            class="action_terminology.presentation.Action_terminologyModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/Action_terminologyModelFile.gif">
+         <description>%_UI_Action_terminologyModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated action_terminology -->
+      <editor
+            id="action_terminology.presentation.Action_terminologyEditorID"
+            name="%_UI_Action_terminologyEditor_label"
+            icon="icons/full/obj16/Action_terminologyModelFile.gif"
+            extensions="action_terminology"
+            class="action_terminology.presentation.Action_terminologyEditor"
+            contributorClass="action_terminology.presentation.Action_terminologyActionBarContributor">
+      </editor>
+   </extension>
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated action_assurancecase -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="action_assurancecase.presentation.Action_assurancecaseModelWizardID"
+            name="%_UI_Action_assurancecaseModelWizard_label"
+            class="action_assurancecase.presentation.Action_assurancecaseModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/Action_assurancecaseModelFile.gif">
+         <description>%_UI_Action_assurancecaseModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated action_assurancecase -->
+      <editor
+            id="action_assurancecase.presentation.Action_assurancecaseEditorID"
+            name="%_UI_Action_assurancecaseEditor_label"
+            icon="icons/full/obj16/Action_assurancecaseModelFile.gif"
+            extensions="action_assurancecase"
+            class="action_assurancecase.presentation.Action_assurancecaseEditor"
+            contributorClass="action_assurancecase.presentation.Action_assurancecaseActionBarContributor">
+      </editor>
+   </extension>
+</plugin>

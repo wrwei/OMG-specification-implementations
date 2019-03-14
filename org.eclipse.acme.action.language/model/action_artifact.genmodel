@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.acme.action.language/src" modelPluginID="org.eclipse.acme.action.language"
+    modelName="Action_artifact" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="action_base.genmodel#//action_base ../../org.eclipse.acme.sacm/model/base.genmodel#//base"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>action_artifact.ecore</foreignModel>
+  <genPackages prefix="Action_artifact" disposableProviderFactory="true" ecorePackage="action_artifact.ecore#/">
+    <genClasses ecoreClass="action_artifact.ecore#//ArtifactActionPackage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference action_artifact.ecore#//ArtifactActionPackage/actions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference action_artifact.ecore#//ArtifactActionPackage/artifactActionPackages"/>
+    </genClasses>
+    <genClasses ecoreClass="action_artifact.ecore#//CreateArtifactPackage"/>
+    <genClasses ecoreClass="action_artifact.ecore#//CreateArtifactPackageInterface"/>
+    <genClasses ecoreClass="action_artifact.ecore#//CreateArtifactPackageBinding"/>
+    <genClasses ecoreClass="action_artifact.ecore#//CreateArtifactPackageGroup"/>
+    <genClasses ecoreClass="action_artifact.ecore#//UpdateArtifactElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference action_artifact.ecore#//UpdateArtifactElement/argumentationElement"/>
+    </genClasses>
+    <genClasses ecoreClass="action_artifact.ecore#//DeleteArtifactElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_artifact.ecore#//DeleteArtifactElement/index"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference action_artifact.ecore#//DeleteArtifactElement/argumentationElement"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="action_artifact.ecore#//CreateArtifactAsset"/>
+    <genClasses ecoreClass="action_artifact.ecore#//CreateArtifact"/>
+    <genClasses ecoreClass="action_artifact.ecore#//CreateActivity"/>
+    <genClasses ecoreClass="action_artifact.ecore#//CreateEvent"/>
+    <genClasses ecoreClass="action_artifact.ecore#//CreateParticipant"/>
+    <genClasses ecoreClass="action_artifact.ecore#//CreateTechnique"/>
+    <genClasses ecoreClass="action_artifact.ecore#//CreateResource"/>
+    <genClasses ecoreClass="action_artifact.ecore#//CreateProperty"/>
+    <genClasses ecoreClass="action_artifact.ecore#//CreateArtifactAssetRelationship"/>
+    <genClasses ecoreClass="action_artifact.ecore#//UpdatePropertyPurpose">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_artifact.ecore#//UpdatePropertyPurpose/purpose"/>
+    </genClasses>
+    <genClasses ecoreClass="action_artifact.ecore#//UpdateArtifactAssetRelationshipSource">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_artifact.ecore#//UpdateArtifactAssetRelationshipSource/index"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference action_artifact.ecore#//UpdateArtifactAssetRelationshipSource/source"/>
+    </genClasses>
+    <genClasses ecoreClass="action_artifact.ecore#//UpdateArtifactAssetRelationshipTarget">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_artifact.ecore#//UpdateArtifactAssetRelationshipTarget/index"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference action_artifact.ecore#//UpdateArtifactAssetRelationshipTarget/target"/>
+    </genClasses>
+    <genClasses ecoreClass="action_artifact.ecore#//UpdateArtifactVersion">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_artifact.ecore#//UpdateArtifactVersion/version"/>
+    </genClasses>
+    <genClasses ecoreClass="action_artifact.ecore#//UpdateArtifactDate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_artifact.ecore#//UpdateArtifactDate/date"/>
+    </genClasses>
+    <genClasses ecoreClass="action_artifact.ecore#//UpdateActivityStartTime">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_artifact.ecore#//UpdateActivityStartTime/startTime"/>
+    </genClasses>
+    <genClasses ecoreClass="action_artifact.ecore#//UpdateActivityEndTime">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_artifact.ecore#//UpdateActivityEndTime/endTime"/>
+    </genClasses>
+    <genClasses ecoreClass="action_artifact.ecore#//UpdateResourceOccurence">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_artifact.ecore#//UpdateResourceOccurence/occurence"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

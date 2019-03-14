@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.acme.action.language/src" modelPluginID="org.eclipse.acme.action.language"
+    modelName="Action_terminology" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="action_base.genmodel#//action_base ../../org.eclipse.acme.sacm/model/base.genmodel#//base ../../org.eclipse.acme.sacm/model/terminology.genmodel#//terminology"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>action_terminology.ecore</foreignModel>
+  <genPackages prefix="Action_terminology" disposableProviderFactory="true" ecorePackage="action_terminology.ecore#/">
+    <genClasses ecoreClass="action_terminology.ecore#//TerminologyActionPackage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference action_terminology.ecore#//TerminologyActionPackage/actions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference action_terminology.ecore#//TerminologyActionPackage/terminologyActionPackages"/>
+    </genClasses>
+    <genClasses ecoreClass="action_terminology.ecore#//CreateTerminologyPackage"/>
+    <genClasses ecoreClass="action_terminology.ecore#//CreateTerminologyPackageInterface"/>
+    <genClasses ecoreClass="action_terminology.ecore#//CreateTerminologyPackageBinding"/>
+    <genClasses ecoreClass="action_terminology.ecore#//CreateTerminologyPackageGroup"/>
+    <genClasses ecoreClass="action_terminology.ecore#//UpdateArtifactElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference action_terminology.ecore#//UpdateArtifactElement/argumentationElement"/>
+    </genClasses>
+    <genClasses ecoreClass="action_terminology.ecore#//DeleteArtifactElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_terminology.ecore#//DeleteArtifactElement/index"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference action_terminology.ecore#//DeleteArtifactElement/argumentationElement"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="action_terminology.ecore#//CreateTerminologyAsset"/>
+    <genClasses ecoreClass="action_terminology.ecore#//CreateCategory"/>
+    <genClasses image="false" ecoreClass="action_terminology.ecore#//CreateExpressionElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_terminology.ecore#//CreateExpressionElement/value"/>
+    </genClasses>
+    <genClasses ecoreClass="action_terminology.ecore#//CreateExpression"/>
+    <genClasses ecoreClass="action_terminology.ecore#//CreateTerm"/>
+    <genClasses ecoreClass="action_terminology.ecore#//UpdateExpressionElementCategory">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference action_terminology.ecore#//UpdateExpressionElementCategory/category"/>
+    </genClasses>
+    <genClasses ecoreClass="action_terminology.ecore#//UpdateExpressionElementValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_terminology.ecore#//UpdateExpressionElementValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="action_terminology.ecore#//UpdateExpressionElementExpression">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference action_terminology.ecore#//UpdateExpressionElementExpression/element"/>
+    </genClasses>
+    <genClasses ecoreClass="action_terminology.ecore#//updateTermExternalReference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_terminology.ecore#//updateTermExternalReference/externalReference"/>
+    </genClasses>
+    <genClasses ecoreClass="action_terminology.ecore#//UpdateTermOrigin">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference action_terminology.ecore#//UpdateTermOrigin/origin"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

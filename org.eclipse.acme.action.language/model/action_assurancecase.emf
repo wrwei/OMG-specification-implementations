@@ -1,0 +1,38 @@
+@namespace(uri="http://org.eclipse.acme.action/1.0/assurancecase", prefix="action_assurance_")
+package action_assurancecase;
+
+import "platform:/resource/org.eclipse.acme.action.language/model/action_base.ecore";
+import "platform:/resource/org.eclipse.acme.action.language/model/action_argumentation.ecore";
+import "platform:/resource/org.eclipse.acme.action.language/model/action_artifact.ecore";
+import "platform:/resource/org.eclipse.acme.action.language/model/action_terminology.ecore";
+import "platform:/resource/org.eclipse.acme.sacm/model/base.ecore";
+import "platform:/resource/org.eclipse.acme.sacm/model/assurancecase.ecore";
+
+class AssuranceCaseActionPackage extends action_base.ActionElement {
+	val action_base.Action[*] actions;
+	val AssuranceCaseActionPackage[*] assuranceCaseActionPackages;
+	val action_argumentation.ArgumentationActionPackage[*] argumentationActionPackages;
+	val action_terminology.TerminologyActionPackage[*] terminologyActionPackages;
+	val action_artifact.ArtifactActionPackage[*] artifactActionPackages;
+}
+
+class CreateAssuranceCasePackage extends action_base.CreateArtifactElement {
+	
+}
+
+class CreateAssuranceCasePackageInterface extends action_base.CreateArtifactElement {
+	
+}
+
+class CreateAssuranceCasePackageBinding extends action_base.CreateArtifactElement {
+	
+}
+
+class UpdateAssuranceCaseElement extends action_base.Update {
+	ref base.ArtifactElement argumentationElement;
+}
+
+class DeleteAssuranceCaseElement extends action_base.Delete {
+	attr int index;
+	ref base.ArtifactElement argumentationElement;	
+}

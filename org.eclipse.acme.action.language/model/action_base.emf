@@ -1,0 +1,92 @@
+@namespace(uri="http://org.eclipse.acme.action/1.0/base", prefix="action_base_")
+package action_base;
+
+import "platform:/resource/org.eclipse.acme.sacm/model/base.ecore";
+
+
+abstract class ActionElement {
+	attr String name;
+	attr String description;
+	attr String gid;
+}
+
+abstract class Action extends ActionElement {
+	val Action[*] subActions;
+}
+
+abstract class RererenceAction extends Action{
+	ref base.ModelElement referencedElement;
+}
+
+abstract class Create extends Action {
+	val base.ModelElement createdElement;
+}
+
+class Read extends RererenceAction {
+}
+
+abstract class Update extends RererenceAction {
+}
+
+class Delete extends RererenceAction {
+}
+
+class UpdateGID extends Update {
+	attr String value;
+}
+
+class UpdateName extends Update {
+	attr String value;
+}
+
+class UpdateDescription extends Update {
+	attr String value;
+}
+
+class UpdateImplementationConstraint extends Update {
+	attr String value;
+	attr int index;
+}
+
+class DeleteImplementationConstraint extends Delete {
+	attr int index;
+}
+
+class AttachNote extends Update {
+	attr String note;	
+}
+
+class DeleteNote extends Delete {
+	attr int index;
+}
+
+class AddTaggedValue extends Update {
+	attr String key;
+	val base.ModelElement value;
+}
+
+class UpdateTaggedValue extends Update {
+	attr int index;
+	attr String key;
+	val base.ModelElement value;
+}
+
+class DeleteTaggedValue extends Update {
+	attr int index;
+}
+
+class MakeAbstract extends Update {
+	attr boolean value;	
+}
+
+class MakeCitation extends Update {
+	attr boolean value;
+}
+
+class Cite extends Update {
+	ref base.ModelElement cited;	
+}
+
+abstract class CreateArtifactElement extends Create {
+	ref base.ModelElement container;
+}

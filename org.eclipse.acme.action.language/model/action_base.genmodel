@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.acme.action.language/src" modelPluginID="org.eclipse.acme.action.language"
+    modelName="Action_base" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="../../org.eclipse.acme.sacm/model/base.genmodel#//base" operationReflection="true"
+    importOrganizing="true">
+  <foreignModel>action_base.ecore</foreignModel>
+  <genPackages prefix="Action_base" disposableProviderFactory="true" childCreationExtenders="true"
+      ecorePackage="action_base.ecore#/">
+    <genClasses image="false" ecoreClass="action_base.ecore#//ActionElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_base.ecore#//ActionElement/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_base.ecore#//ActionElement/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_base.ecore#//ActionElement/gid"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="action_base.ecore#//Action">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference action_base.ecore#//Action/subActions"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="action_base.ecore#//RererenceAction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference action_base.ecore#//RererenceAction/referencedElement"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="action_base.ecore#//Create">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference action_base.ecore#//Create/createdElement"/>
+    </genClasses>
+    <genClasses ecoreClass="action_base.ecore#//Read"/>
+    <genClasses image="false" ecoreClass="action_base.ecore#//Update"/>
+    <genClasses ecoreClass="action_base.ecore#//Delete"/>
+    <genClasses ecoreClass="action_base.ecore#//UpdateGID">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_base.ecore#//UpdateGID/value"/>
+    </genClasses>
+    <genClasses ecoreClass="action_base.ecore#//UpdateName">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_base.ecore#//UpdateName/value"/>
+    </genClasses>
+    <genClasses ecoreClass="action_base.ecore#//UpdateDescription">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_base.ecore#//UpdateDescription/value"/>
+    </genClasses>
+    <genClasses ecoreClass="action_base.ecore#//UpdateImplementationConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_base.ecore#//UpdateImplementationConstraint/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_base.ecore#//UpdateImplementationConstraint/index"/>
+    </genClasses>
+    <genClasses ecoreClass="action_base.ecore#//DeleteImplementationConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_base.ecore#//DeleteImplementationConstraint/index"/>
+    </genClasses>
+    <genClasses ecoreClass="action_base.ecore#//AttachNote">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_base.ecore#//AttachNote/note"/>
+    </genClasses>
+    <genClasses ecoreClass="action_base.ecore#//DeleteNote">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_base.ecore#//DeleteNote/index"/>
+    </genClasses>
+    <genClasses ecoreClass="action_base.ecore#//AddTaggedValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_base.ecore#//AddTaggedValue/key"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference action_base.ecore#//AddTaggedValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="action_base.ecore#//UpdateTaggedValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_base.ecore#//UpdateTaggedValue/index"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_base.ecore#//UpdateTaggedValue/key"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference action_base.ecore#//UpdateTaggedValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="action_base.ecore#//DeleteTaggedValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_base.ecore#//DeleteTaggedValue/index"/>
+    </genClasses>
+    <genClasses ecoreClass="action_base.ecore#//MakeAbstract">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_base.ecore#//MakeAbstract/value"/>
+    </genClasses>
+    <genClasses ecoreClass="action_base.ecore#//MakeCitation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute action_base.ecore#//MakeCitation/value"/>
+    </genClasses>
+    <genClasses ecoreClass="action_base.ecore#//Cite">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference action_base.ecore#//Cite/cited"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="action_base.ecore#//CreateArtifactElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference action_base.ecore#//CreateArtifactElement/container"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,107 @@
+@namespace(uri="http://org.eclipse.acme.action/1.0/artifact", prefix="action_artifact_")
+package action_artifact;
+
+import "platform:/resource/org.eclipse.acme.action.language/model/action_base.ecore";
+import "platform:/resource/org.eclipse.acme.sacm/model/base.ecore";
+import "platform:/resource/org.eclipse.acme.sacm/model/artifact.ecore";
+
+class ArtifactActionPackage extends action_base.ActionElement {
+	val action_base.Action[*] actions;
+	val ArtifactActionPackage[*] artifactActionPackages;
+}
+
+class CreateArtifactPackage extends action_base.CreateArtifactElement{
+	
+}
+
+class CreateArtifactPackageInterface extends action_base.CreateArtifactElement{
+	
+}
+
+class CreateArtifactPackageBinding extends action_base.CreateArtifactElement{
+	
+}
+
+class CreateArtifactPackageGroup extends action_base.CreateArtifactElement{
+	
+}
+
+class UpdateArtifactElement extends action_base.Update {
+	ref base.ArtifactElement argumentationElement;
+}
+
+class DeleteArtifactElement extends action_base.Delete {
+	attr int index;
+	ref base.ArtifactElement argumentationElement;	
+}
+
+abstract class CreateArtifactAsset extends action_base.Create {
+	
+}
+
+class CreateArtifact extends CreateArtifactAsset {
+	
+}
+
+class CreateActivity extends CreateArtifactAsset {
+	
+}
+
+class CreateEvent extends CreateArtifactAsset {
+	
+}
+
+class CreateParticipant extends CreateArtifactAsset {
+	
+}
+
+class CreateTechnique extends CreateArtifactAsset {
+	
+}
+
+class CreateResource extends CreateArtifactAsset {
+	
+}
+
+class CreateProperty extends CreateArtifactAsset {
+	
+}
+
+class CreateArtifactAssetRelationship extends CreateArtifactAsset {
+	
+}
+
+class UpdatePropertyPurpose extends action_base.Update {
+	attr String purpose;
+}
+
+class UpdateArtifactAssetRelationshipSource extends action_base.Update {
+	attr int index;
+	ref base.ModelElement source;
+}
+
+class UpdateArtifactAssetRelationshipTarget extends action_base.Update {
+	attr int index;
+	ref base.ModelElement target;
+}
+
+class UpdateArtifactVersion extends action_base.Update {
+	attr String version;
+}
+
+class UpdateArtifactDate extends action_base.Update {
+	attr EDate date;	
+}
+
+class UpdateActivityStartTime extends action_base.Update {
+	attr EDate startTime;
+}
+
+class UpdateActivityEndTime extends action_base.Update {
+	attr EDate endTime;
+}
+
+class UpdateResourceOccurence extends action_base.Update {
+	attr EDate occurence;
+}
+
