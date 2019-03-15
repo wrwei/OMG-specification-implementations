@@ -1,0 +1,160 @@
+@namespace(uri="http://org.eclipse.safety.standard/1.0", prefix="standard")
+package standard;
+
+enum RequirementRelationshipKind {
+	AND = 0;
+	OR = 1;
+	XOR = 2;
+	REQUIRES = 3;
+	CONTRIBUTESTO = 4;
+}
+
+enum ApplicabilityKind {
+	AND = 0;
+	OR = 1;
+	XOR = 2;
+}
+
+abstract class NamedElement {
+	attr String ~id;
+	attr String name;
+}
+
+abstract class DescribableElement extends NamedElement{
+	attr String description;
+}
+
+abstract class StandardElement extends DescribableElement {
+
+}
+
+abstract class RelationshipElement extends StandardElement {
+	ref StandardElement[1] source;
+	ref StandardElement[1] target;
+}
+
+class ContentElement extends DescribableElement{
+	attr String uri;
+	attr String query;	
+}
+
+/*
+* Corresponds to a standard
+*/
+class StandardPackage extends StandardElement{
+	attr String scope;
+	attr String revision;
+	attr String purpose;
+	attr String publisher;
+	attr EDate issued;
+	
+	val StandardElement[*] standardElement;
+}
+
+class StandardPackageInterface extends StandardPackage {
+	ref StandardPackage implements;
+}
+
+class StandardPackageBinding extends StandardPackage {
+	ref StandardPackage[*] participantPackage;
+} 
+
+/*
+* Requirement defined in the standard
+*/
+class Requirement extends StandardElement {
+	attr String reference;
+	attr String assumptions;
+	attr String rationale;
+	attr String image;
+	attr String annotations;
+	
+	ref Requirement[*] subRequirement;
+}
+
+/*
+* Relationships between requirements
+* source and target need to be Requirement
+*/
+class RequirementRel extends RelationshipElement {
+	attr RequirementRelationshipKind type;
+}
+
+/*
+* Categories of criticality that a standard defines 
+* (e.g. SIL 1,2,3 for IEC61508)
+*/
+class CriticalityLevel extends StandardElement {
+	
+}
+
+/*
+* Categories of applicability related to the independency required to perform an activity
+* (e.g. the level of independence of the person performing a verification activity mandated in DO-178C)
+*/
+class IndependencyLevel extends CriticalityLevel {
+	
+}
+
+/*
+* Categories of applicability that a standard defines 
+* (e.g. keyword mandated in EN50128)
+*/
+class ApplicabilityLevel extends StandardElement {
+	
+}
+
+/*
+* Categories of applicability related to the level of recommendation of a given activity
+* (e.g. the degree of recommendation to use the methods that ISO26262 assigns to each ASIL within a conformity requirement)
+*/
+class RecommendationLevel extends ApplicabilityLevel {
+	
+}
+
+/*
+* Categories of applicability related to the data control category associated to the configuration management controls placed on the data
+* (e.g., the CC1 and CC2 control categories defined in DO-178C)
+*/
+class ControlCategory extends ApplicabilityLevel {
+	
+}
+
+
+/*
+* Applicability level for a given criticality level
+*/
+class CriticalityApplicability extends StandardElement{
+	attr String comment;
+	
+	ref ApplicabilityLevel[1] applicabilityLevel;
+	ref CriticalityLevel[1] criticalityLevel;
+}
+
+/*
+* Applicability tuple (applicability level, criticality level and assurable elemtn - such as a technique, a requirement or an activity)
+*/
+class Applicability extends StandardElement {
+	attr String comment;
+	
+	ref ContentElement target;
+	ref CriticalityApplicability[*] criticalityApplicability;
+}
+
+/*
+* Applicability or recommendation tables from standards
+*/
+class ApplicabilityTable extends StandardElement {
+	ref Applicability[*] ownedApplicability;
+	ref ContentElement[*] tableContext;	
+}
+
+
+/*
+* Relationships between two reference applicability specifications
+* source and target needs to be Applicability
+*/
+class ApplicabilityRel extends RelationshipElement {
+	attr ApplicabilityKind type;
+}
+
